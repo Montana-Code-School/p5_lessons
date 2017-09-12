@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Functions - Traffic Jam</title>
+  </head>
+  <body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
+  </body>
+
+  <script type="text/javascript">
+
+    /* 1. Draw multiple cars
+     * 2. Animate the cars to drive slowly behind each other
+     *    forming a slow moving traffic jam at the same speed
+     */
+
+    // start coordinates for car
+    let x = 100;
+    let y = 470;
+
+    function setup() {
+      createCanvas(800, 600);
+    }
+
+    function draw() {
+      background(10, 195, 221);
+
+      x = x + 2; // motion
+
+      // street
+      fill(159, 154, 161); // street fill
+      rect(0, 500, 800, 100); // street
+
+      createCar('#34d75a', x, y);
+      createCar('#f4310f', x + 120, y);
+      createCar('#3137bd', x + 240, y);
+      createCar('#d716c4', x + 360, y);
+      createCar('#f1da0c', x + 480, y);
+
+    }
+
+    function createCar(color, x, y) {
+
+      // car
+      fill(color); // car fill
+      noStroke();
+      rect(x, y, 100, 20); // car bottom
+      rect(x + 20, y - 20 , 60, 20); // car top
+      fill(0, 0, 0); // wheel fill
+      ellipse(x + 20, y + 25, 10); // back wheel
+      ellipse(x + 80, y + 25, 10); // front wheel
+
+    }
+
+  </script>
+</html>
