@@ -17,13 +17,32 @@
      *
      */
 
-    function setup() {
+     function setup() {
+       createCanvas(800, 600);
+       background(10, 195, 221);
 
-    }
+       // start coordinates for car
+       let x = 100;
+       let y = 470;
 
-    function draw() {
+       // street
+       fill(159, 154, 161); // street fill
+       rect(0, 500, 800, 100); // street
 
-    }
+       // car
+       fill(212, 45, 16); // car fill
+       noStroke();
+       rect(100, 470, 100, 20); // car bottom
+       rect(120, 450 , 60, 20); // car top
+       fill(0, 0, 0); // wheel fill
+       ellipse(120, 495, 10); // back wheel
+       ellipse(180, 495, 10); // front wheel
+
+     }
+
+     function draw() {
+
+     }
 
   </script>
 </html>

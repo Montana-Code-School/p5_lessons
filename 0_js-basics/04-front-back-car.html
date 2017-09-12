@@ -11,19 +11,49 @@
 
   <script type="text/javascript">
 
-    /* 1. Use your solution from Challenge 1
+    /* 1. Use your solution from Challenge 4
      * 2. Make the car drive along the street based on your keyboard inputs
      *    - Left keyboard key -> car drives backwards (left)
      *    - Right keyboard key -> car drives forward (right)
      */
 
-    function setup() {
+     // start coordinates for car
+     let x = 100;
+     let y = 470;
 
-    }
+     function setup() {
+       createCanvas(800, 600);
+     }
 
-    function draw() {
+     function draw() {
 
-    }
+       //x = x + 10;
+
+       background(10, 195, 221);
+
+       // street
+       fill(159, 154, 161); // street fill
+       rect(0, 500, 800, 100); // street
+
+       // car
+       fill(212, 45, 16); // car fill
+       noStroke();
+       rect(x, y, 100, 20); // car bottom
+       rect(x + 20, y - 20 , 60, 20); // car top
+       fill(0, 0, 0); // wheel fill
+       ellipse(x + 20, y + 25, 10); // back wheel
+       ellipse(x + 80, y + 25, 10); // front wheel
+
+       // keyboard events
+       if (keyIsDown(LEFT_ARROW)) {
+         x -= 10;
+       }
+
+       if (keyIsDown(RIGHT_ARROW)) {
+         x += 10;
+       }
+
+     }
 
   </script>
 </html>

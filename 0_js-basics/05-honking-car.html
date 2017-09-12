@@ -11,9 +11,17 @@
 
   <script type="text/javascript">
 
+    /* 1. Use your solution from Challenge 4
+     * 2. Make the car 'honk' by adding the text 'Honk'
+     *    wherever the user clicks on the canvas
+     */
+
     // start coordinates for car
     let x = 100;
     let y = 470;
+    let mX = 0;
+    let mY = 0;
+    let noise = '';
 
     function setup() {
       createCanvas(800, 600);
@@ -21,7 +29,7 @@
 
     function draw() {
 
-      //background(10, 195, 221);
+      background(10, 195, 221);
 
       // street
       fill(159, 154, 161); // street fill
@@ -35,6 +43,9 @@
       fill(0, 0, 0); // wheel fill
       ellipse(x + 20, y + 25, 10); // back wheel
       ellipse(x + 80, y + 25, 10); // front wheel
+      textSize(32);
+      fill(0, 0, 0);
+      text(noise, mX, mY);
 
       // keyboard events
       if (keyIsDown(LEFT_ARROW)) {
@@ -45,23 +56,15 @@
         x += 10;
       }
 
-    }
-
-    // more keyboard events
-    function keyPressed() {
-      if (keyCode === UP_ARROW) {
-        y -= 20;
+      // mouse event
+      if (mouseIsPressed) {
+        if (mouseButton == LEFT) {
+          noise = 'Honk!!!';
+          mX = mouseX;
+          mY = mouseY;
+        }
       }
-      if (keyCode === DOWN_ARROW) {
-        y += 20;
-      }
-    }
 
-    function mouseClicked() {
-      textSize(32);
-      fill(255, 255, 255);
-      text('Honk!!!', 100, 100);
-      return false;
     }
 
   </script>
