@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Mouse Events & Strings - Honking Car</title>
+    <title>String Concat & Arrays  - Roadrage Car</title>
   </head>
   <body>
 
@@ -11,9 +11,10 @@
 
   <script type="text/javascript">
 
-    /* 1. Use your solution from Challenge 4
-     * 2. Make the car 'honk' by adding the text 'Honk!!!'
-     *    wherever the user clicks on the canvas
+    /* 1. Use your solution from Challenge 5
+     * 2. Keep the car 'honking' by adding another 'Honk'
+     *    for each time the user clicks on the canvas.
+     *    Finish the string by '!!!'. i.e 'Honk, Honk, Honk!!!'
      */
 
     // start coordinates for car
@@ -21,7 +22,8 @@
     let y = 470;
     let mX = 0;
     let mY = 0;
-    let noise = '';
+    let noise = [];
+    let noiseEnding = '!!!';
 
     function setup() {
       createCanvas(800, 600);
@@ -45,7 +47,7 @@
       ellipse(x + 80, y + 25, 10); // front wheel
       textSize(32);
       fill(0, 0, 0);
-      text(noise, mX, mY);
+      text(noise.toString() + noiseEnding, mX, mY);
 
       // keyboard events
       if (keyIsDown(LEFT_ARROW)) {
@@ -58,9 +60,14 @@
 
     }
 
-    // mouse event
     function mouseClicked() {
-      noise = 'Honk!!!';
+
+      if (noise.length === 0) {
+        noise.push('Honk');
+      }
+      else {
+        noise.push(' Honk');
+      }
       mX = mouseX;
       mY = mouseY;
     }
