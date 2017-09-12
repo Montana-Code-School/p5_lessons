@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Functions & Loops - Traffic Jam</title>
+  </head>
+  <body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
+  </body>
+
+  <script type="text/javascript">
+
+    /* 1. Draw multiple cars on a wide road (y-Axis)
+     * 2. Animate the cars to race each other at random speeds
+     */
+
+    // start coordinates for car
+    let x = 100;
+    let y = 470;
+    let nrOfCars = 5;
+    let carOffSet = 100;
+    let carColors = ['#34d75a', '#f4310f', '#3137bd', '#d716c4', '#f1da0c'];
+    let carSpeeds = [];
+    let carX = [];
+
+    function setup() {
+      createCanvas(800, 600);
+
+      for (i = 0; i < nrOfCars; i++) {
+        carSpeeds.push(Math.round(random(0, 20))); // create random car speeds
+        carX.push(x); // give each car individual starting point
+      }
+
+    }
+
+    function draw() {
+      background(159, 154, 161);
+
+
+      for (i = 0; i < nrOfCars; i++) {
+        createCar(carColors[i], carX[i], y - carOffSet * i);
+
+        carX[i]+= carSpeeds[i]; // update indivdual x coordinate based on speed
+      }
+
+    }
+
+    function createCar(color, x, y) {
+      fill(color); // car fill
+      noStroke();
+      rect(x, y, 100, 20); // car bottom
+      rect(x + 20, y - 20 , 60, 20); // car top
+      fill(0, 0, 0); // wheel fill
+      ellipse(x + 20, y + 25, 10); // back wheel
+      ellipse(x + 80, y + 25, 10); // front wheel
+
+    }
+
+  </script>
+</html>

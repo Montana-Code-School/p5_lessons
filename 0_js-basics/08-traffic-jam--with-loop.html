@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Functions - Traffic Jam</title>
+    <title>Functions & Loops - Traffic Jam</title>
   </head>
   <body>
 
@@ -11,14 +11,15 @@
 
   <script type="text/javascript">
 
-    /* 1. Draw multiple cars
-     * 2. Animate the cars to drive slowly behind each other
-     *    forming a slow moving traffic jam at the same speed
+    /* 1. Refactor your code from challenge 7 to use loops
      */
 
     // start coordinates for car
     let x = 100;
     let y = 470;
+    let nrOfCars = 5;
+    let carOffSet = 120;
+    let carColors = ['#34d75a', '#f4310f', '#3137bd', '#d716c4', '#f1da0c'];
 
     function setup() {
       createCanvas(800, 600);
@@ -31,11 +32,10 @@
       fill(159, 154, 161); // street fill
       rect(0, 500, 800, 100); // street
 
-      createCar('#34d75a', x, y);
-      createCar('#f4310f', x + 120, y);
-      createCar('#3137bd', x + 240, y);
-      createCar('#d716c4', x + 360, y);
-      createCar('#f1da0c', x + 480, y);
+
+      for (i = 0; i < nrOfCars; i++) {
+        createCar(carColors[i], x + carOffSet * i, y);
+      }
 
       x = x + 2; // motion
 
