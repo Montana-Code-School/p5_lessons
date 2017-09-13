@@ -25,8 +25,6 @@
 
      function draw() {
 
-       x = x + 10; // motion
-
        background(10, 195, 221);
 
        // street
@@ -41,6 +39,8 @@
        fill(0, 0, 0); // wheel fill
        ellipse(x + 20, y + 25, 10); // back wheel
        ellipse(x + 80, y + 25, 10); // front wheel
+
+       x = x + 10; // motion
      }
 
   </script>
