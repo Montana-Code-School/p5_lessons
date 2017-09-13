@@ -28,8 +28,12 @@
       createCanvas(800, 600);
 
       for (i = 0; i < nrOfCars; i++) {
-        carSpeeds.push(Math.round(random(0, 20))); // create random car speeds
-        carX.push(x); // give each car individual starting point
+
+        // create random car speeds
+        carSpeeds.push(Math.round(random(0, 20)));
+
+        // give each car individual starting point
+        carX.push(x);
       }
 
     }
@@ -37,11 +41,13 @@
     function draw() {
       background(159, 154, 161);
 
-
       for (i = 0; i < nrOfCars; i++) {
+
+        // recreate each car again with updated x coordinate
         createCar(carColors[i], carX[i], y - carOffSet * i);
 
-        carX[i]+= carSpeeds[i]; // update indivdual x coordinate based on speed
+        // update indivdual x coordinate based on speed
+        carX[i]+= carSpeeds[i];
       }
 
     }
