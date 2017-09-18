@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>API - Ghiphy Car Images</title>
+  </head>
+  <body>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
+  </body>
+
+  <script type="text/javascript">
+
+    /* 1. Load car images from the Giphy API
+          - Create loading text while Giphy images are not loaded yet
+     * 2. Display all images in a grid format
+     */
+
+    let images = null;
+    let imageSize = 300;
+    let paddingSize = 10;
+    let x = 0;
+    let y = 0;
+
+    function preload() {  // preload() runs once
+
+      // stub together API call url
+      let url = 'http://api.giphy.com/v1/gifs/search?q=cars&' +
+        'api_key=1aad8150a8f2496cae0414b3f8d35622' +
+        '&limit=6';
+
+      // HTTP POST request (API call)
+      httpGet(url, "json", false, function(response) {
+        images = response.data;
+      });
+
+    }
+
+    function setup() {
+      createCanvas(915, 605);
+    }
+
+    function draw() {
+
+      // check if API call has completed yet
+      if( !images ) {
+
+        /* if not - display loading text and
+         * and exit function -> recheck on nect draw call()
+         */
+        textSize(32);
+        text('Loading...', 10, 30)
+        return;
+      }
+
+      // Ghiphy API call has completed
+      images.forEach( imgJSON => {
+
+        // load every image from the JSON response of the Giphy API call
+        let loadedImg = loadImage(imgJSON.images.downsized_medium.url, function(img) {
+          image(loadedImg, x, y, imageSize, imageSize);
+          x += imageSize + paddingSize; // up x grid coordinates
+
+          if(x/(imageSize + paddingSize) === 3) { // if row is full go to next row
+            x = 0;
+            y += imageSize + paddingSize; // update y grid coordinate
+          }
+        });
+
+      });
+
+      noLoop(); // stop draw
+    }
+
+  </script>
+</html>
